@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- 方法1 -->
+    <meta name="viewport" content="width=device-width, initial-scale=0.5, minimum-scale=0.5, maximum-scale=0.5"/>
+    <title>Document</title>
+    <style>
+
+      .left {
+        padding: 10px;
+        /* margin: 10px; */
+      }
+    </style>
+</head>
+<body>
+      <span class="left">1233333333333333</span>
+
+</body>
+  <script>
+    function addCurry() {
+      let arr = [...arguments]
+      // 利用闭包的特性收集所有参数值
+      var fn = function() {
+          arr.push(...arguments);
+          return fn;
+      };
+      // 利用 toString 隐式转换
+      fn.toString = function () {
+          return arr.reduce(function (a, b) {
+              return a + b;
+          });
+      }
+      return fn;
+    }
+    console.log(addCurry(1)(2)(3));
+  </script>
+</html>
